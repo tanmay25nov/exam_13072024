@@ -1,0 +1,26 @@
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: tanmay
+      WORDPRESS_DB_PASSWORD: tanmay123
+      WORDPRESS_DB_NAME: tanmaydb
+    volumes:
+      - wordpress:/var/www/html
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: tanmaydb
+      MYSQL_USER: tanmay
+      MYSQL_PASSWORD: tanmay123
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  wordpress:
+  db:
